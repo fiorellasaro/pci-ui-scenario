@@ -1,11 +1,18 @@
 import { AgGridReact } from "ag-grid-react";
-import { ColDef } from "ag-grid-community";
+import {
+  ColDef,
+} from "ag-grid-community";
 import data from "./near-earth-asteroids.json";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
+// import "ag-grid-enterprise/styles/ag-grid.css";
+
 
 const defaultColDef = {
   sortable: true,
+};
+const gridOptions = {
+  enableRangeSelection: true,
 };
 
 const valueFormatHazartdous = ({ value }: { value: string }) =>
@@ -60,6 +67,10 @@ const NeoGrid = (): JSX.Element => {
         columnDefs={columnDefs}
         rowGroupPanelShow={"always"}
         defaultColDef={defaultColDef}
+        rowSelection={"single"}
+        enableRangeSelection={true}
+        copyHeadersToClipboard={true}
+        gridOptions={gridOptions}
       />
     </div>
   );
