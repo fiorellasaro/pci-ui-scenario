@@ -1,0 +1,15 @@
+.main-header{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.main-title{
+    text-align: center;
+    margin-right: 15px;
+}
+
+.grid-style{
+    height: 900px;
+    width: 1920px;
+}

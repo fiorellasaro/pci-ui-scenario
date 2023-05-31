@@ -1,4 +1,4 @@
-import Overview from "./container/overview";
+import Overview from "./pages/overview";
 
 const App = () => {
   return (
