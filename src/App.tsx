@@ -1,8 +1,8 @@
-import NeoGrid from './Grid';
+import Overview from "./container/overview";
 
 const App = () => {
   return (
-      <NeoGrid />
+    <Overview/>
   );
 }
 
