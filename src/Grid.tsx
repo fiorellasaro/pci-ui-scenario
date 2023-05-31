@@ -1,12 +1,12 @@
+import { useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
-import {
-  ColDef,
-} from "ag-grid-community";
+import { ColDef } from "ag-grid-community";
 import data from "./near-earth-asteroids.json";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-// import "ag-grid-enterprise/styles/ag-grid.css";
+import React from "react";
 
+// import "ag-grid-enterprise/styles/ag-grid.css";
 
 const defaultColDef = {
   sortable: true,
@@ -59,7 +59,30 @@ const columnDefs: ColDef[] = [
   },
 ];
 
-const NeoGrid = (): JSX.Element => {
+const NeoGrid = React.forwardRef((props, ref) => {
+  const gridApiRef = useRef<any>();
+  const columnApiRef = useRef<any>();
+
+  React.useImperativeHandle(ref, () => ({
+    clearFiltersAndSorting,
+  }));
+
+  const onGridReady = (params: any) => {
+    gridApiRef.current = params.api;
+    columnApiRef.current = params.columnApi;
+  };
+
+  const clearFiltersAndSorting = () => {
+    if (gridApiRef.current && columnApiRef.current) {
+      const allColumns = columnApiRef.current.getAllDisplayedColumns();
+      allColumns.forEach((column: any) => {
+        column.setSort(undefined);
+        gridApiRef.current.setFilterModel(null);
+        gridApiRef.current.onFilterChanged();
+      });
+    }
+  };
+
   return (
     <div className="ag-theme-alpine" style={{ height: 900, width: 1920 }}>
       <AgGridReact
@@ -71,9 +94,10 @@ const NeoGrid = (): JSX.Element => {
         enableRangeSelection={true}
         copyHeadersToClipboard={true}
         gridOptions={gridOptions}
+        onGridReady={onGridReady}
       />
     </div>
   );
-};
+});
 
 export default NeoGrid;
