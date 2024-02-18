@@ -14,11 +14,52 @@ const columnDefs: ColDef[] = [
     field: "discovery_date",
     headerName: "Discovery Date",
     filter: "agDateColumnFilter",
+    filterParams: {
+      comparator: function (filterLocalDate: Date, cellValue: any) {
+        var cellDate = new Date(cellValue);
+        if (
+          cellDate.getFullYear() === filterLocalDate.getFullYear() &&
+          cellDate.getMonth() === filterLocalDate.getMonth() &&
+          cellDate.getDate() === filterLocalDate.getDate()
+        ) {
+          return 0;
+        }
+        if (cellDate > filterLocalDate) {
+          return 1;
+        }
+        if (cellDate < filterLocalDate) {
+          return -1;
+        }
+      },
+      browserDatePicker: true,
+    },
+    valueFormatter: ({ value }) =>
+      new Date(value).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }),
   },
-  { field: "h_mag", headerName: "H (mag)", filter: "agNumberColumnFilter" },
-  { field: "moid_au", headerName: "MOID (au)", filter: "agNumberColumnFilter" },
-  { field: "q_au_1", headerName: "q (au)", filter: "agNumberColumnFilter" },
-  { field: "q_au_2", headerName: "Q (au)", filter: "agNumberColumnFilter" },
+  {
+    field: "h_mag",
+    headerName: "H (mag)",
+    filter: "agNumberColumnFilter",
+  },
+  {
+    field: "moid_au",
+    headerName: "MOID (au)",
+    filter: "agNumberColumnFilter",
+  },
+  {
+    field: "q_au_1",
+    headerName: "q (au)",
+    filter: "agNumberColumnFilter",
+  },
+  {
+    field: "q_au_2",
+    headerName: "Q (au)",
+    filter: "agNumberColumnFilter",
+  },
   {
     field: "period_yr",
     headerName: "Period (yr)",
