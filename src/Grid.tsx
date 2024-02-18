@@ -12,6 +12,7 @@ const columnDefs: ColDef[] = [
     field: "designation",
     headerName: "Designation",
     filter: "agTextColumnFilter",
+    enableValue: true,
   },
   {
     field: "discovery_date",
@@ -42,48 +43,57 @@ const columnDefs: ColDef[] = [
         month: "2-digit",
         day: "2-digit",
       }),
+    enableValue: true,
   },
   {
     field: "h_mag",
     headerName: "H (mag)",
     filter: "agNumberColumnFilter",
+    enableValue: true,
   },
   {
     field: "moid_au",
     headerName: "MOID (au)",
     filter: "agNumberColumnFilter",
+    enableValue: true,
   },
   {
     field: "q_au_1",
     headerName: "q (au)",
     filter: "agNumberColumnFilter",
+    enableValue: true,
   },
   {
     field: "q_au_2",
     headerName: "Q (au)",
     filter: "agNumberColumnFilter",
+    enableValue: true,
   },
   {
     field: "period_yr",
     headerName: "Period (yr)",
     filter: "agNumberColumnFilter",
+    enableValue: true,
   },
   {
     field: "i_deg",
     headerName: "Inclination (deg)",
     filter: "agNumberColumnFilter",
+    enableValue: true,
   },
   {
     field: "pha",
     headerName: "Potentially Hazardous",
     filter: "agTextColumnFilter",
     valueFormatter: valueFormatHazartdous,
+    enableValue: true,
   },
   {
     field: "orbit_class",
     headerName: "Orbit Class",
     enableRowGroup: true,
     filter: "agTextColumnFilter",
+    enableValue: true,
   },
 ];
 
@@ -97,7 +107,10 @@ const NeoGrid = (): JSX.Element => {
         rowGroupPanelShow={"always"}
         defaultColDef={{
           sortable: true,
+          enableValue: true,
         }}
+        enableCellTextSelection={true}
+        enableRangeSelection={true}
       />
     </div>
   );
