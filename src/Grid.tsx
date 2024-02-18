@@ -4,6 +4,9 @@ import data from "./near-earth-asteroids.json";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
+const valueFormatHazartdous = ({ value }: { value: string }) =>
+  value === "Y" ? "Yes" : value === "N" ? "No" : "";
+
 const columnDefs: ColDef[] = [
   {
     field: "designation",
@@ -74,6 +77,7 @@ const columnDefs: ColDef[] = [
     field: "pha",
     headerName: "Potentially Hazardous",
     filter: "agTextColumnFilter",
+    valueFormatter: valueFormatHazartdous,
   },
   {
     field: "orbit_class",
