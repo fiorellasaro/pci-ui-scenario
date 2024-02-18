@@ -1,9 +1,7 @@
-import NeoGrid from './Grid';
+import NeoGrid from "./Grid";
 
 const App = () => {
-  return (
-      <NeoGrid />
-  );
-}
+  return <NeoGrid />;
+};
 
 export default App;
